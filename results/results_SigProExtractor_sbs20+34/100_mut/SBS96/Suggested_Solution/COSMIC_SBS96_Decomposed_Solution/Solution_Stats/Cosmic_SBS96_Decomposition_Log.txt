@@ -11,23 +11,23 @@ Genome Build: GRCh37
 
 
 !!!!!!!!!!!!!!!!!!!!!!!!! LAYER: 0 !!!!!!!!!!!!!!!!!!!!!!!!!
-Best Signature Composition ['SBS5', 'SBS34']
-L2 Error % 0.8
-Cosine Similarity 0.6
+Best Signature Composition ['SBS5', 'SBS20']
+L2 Error % 0.83
+Cosine Similarity 0.56
 
 
 !!!!!!!!!!!!!!!!!!!!!!!!! LAYER: 1 !!!!!!!!!!!!!!!!!!!!!!!!!
-Best Signature Composition ['SBS5', 'SBS20', 'SBS34']
-L2 Error % 0.74
-Cosine Similarity 0.67
+Best Signature Composition ['SBS5', 'SBS20', 'SBS39']
+L2 Error % 0.76
+Cosine Similarity 0.65
 
 
 !!!!!!!!!!!!!!!!!!!!!!!!! LAYER: 2 !!!!!!!!!!!!!!!!!!!!!!!!!
-Best Signature Composition ['SBS5', 'SBS20', 'SBS34']
-L2 Error % 0.74
-Cosine Similarity 0.67
+Best Signature Composition ['SBS5', 'SBS20', 'SBS39']
+L2 Error % 0.76
+Cosine Similarity 0.65
 
 #################### Final Composition #################################
-['SBS5', 'SBS20', 'SBS34']
-L2 Error % 0.74
-Cosine Similarity 0.67
+['SBS5', 'SBS20', 'SBS39']
+L2 Error % 0.76
+Cosine Similarity 0.65

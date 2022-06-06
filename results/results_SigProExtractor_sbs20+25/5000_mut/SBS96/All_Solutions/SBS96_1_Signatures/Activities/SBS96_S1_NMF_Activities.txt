@@ -1,2 +1,2 @@
 Samples	SBS96A
-Number	5000
+Number	6837

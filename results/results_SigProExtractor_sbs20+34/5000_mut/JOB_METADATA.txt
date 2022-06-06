@@ -21,7 +21,7 @@ Scikit-learn version: 1.0.2
 INPUT DATA
 	input_type: matrix
 	output: results/results_SigProExtractor/5000_mut
-	input_data: results/results/5000_mut/mut_table_96_5000.tsv
+	input_data: results/results/5000_mut/mut_table_96_norm_5000.tsv
 	reference_genome: GRCh37
 	context_types: SBS96
 	exome: False
@@ -59,20 +59,20 @@ COSMIC MATCH
 	collapse_to_SBS96: True
 
 -------Analysis Progress------- 
-[2022-06-03 14:55:05] Analysis started: 
+[2022-06-06 12:48:57] Analysis started: 
 
 ##################################
 
-[2022-06-03 14:55:05] Analysis started for SBS96. Matrix size [96 rows x 1 columns]
+[2022-06-06 12:48:57] Analysis started for SBS96. Matrix size [96 rows x 1 columns]
 
-[2022-06-03 14:55:05] Normalization GMM with cutoff value set at 9600
+[2022-06-06 12:48:57] Normalization GMM with cutoff value set at 9600
 
-[2022-06-03 14:55:50] SBS96 de novo extraction completed for a total of 1 signatures! 
-Execution time:0:00:44
+[2022-06-06 12:49:58] SBS96 de novo extraction completed for a total of 1 signatures! 
+Execution time:0:01:01
 
-[2022-06-03 14:55:59] Analysis ended: 
+[2022-06-06 12:50:12] Analysis ended: 
 
 -------Job Status------- 
 Analysis of mutational signatures completed successfully! 
-Total execution time: 0:00:54 
+Total execution time: 0:01:15 
 Results can be found in:  results/results_SigProExtractor/5000_mut  folder

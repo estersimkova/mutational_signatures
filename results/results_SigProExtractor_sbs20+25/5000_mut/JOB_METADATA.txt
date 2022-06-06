@@ -21,13 +21,13 @@ Scikit-learn version: 1.0.2
 INPUT DATA
 	input_type: matrix
 	output: results/results_SigProExtractor/5000_mut
-	input_data: results/results/5000_mut/mut_table_96_5000.tsv
+	input_data: results/results/5000_mut/mut_table_96_norm_5000.tsv
 	reference_genome: GRCh37
 	context_types: SBS96
 	exome: False
 NMF REPLICATES
 	minimum_signatures: 1
-	maximum_signatures: 3
+	maximum_signatures: 6
 	NMF_replicates: 100
 NMF ENGINE
 	NMF_init: random
@@ -59,20 +59,20 @@ COSMIC MATCH
 	collapse_to_SBS96: True
 
 -------Analysis Progress------- 
-[2022-06-05 18:27:30] Analysis started: 
+[2022-06-06 12:23:05] Analysis started: 
 
 ##################################
 
-[2022-06-05 18:27:30] Analysis started for SBS96. Matrix size [96 rows x 1 columns]
+[2022-06-06 12:23:05] Analysis started for SBS96. Matrix size [96 rows x 1 columns]
 
-[2022-06-05 18:27:30] Normalization GMM with cutoff value set at 9600
+[2022-06-06 12:23:05] Normalization GMM with cutoff value set at 9600
 
-[2022-06-05 18:28:37] SBS96 de novo extraction completed for a total of 1 signatures! 
-Execution time:0:01:07
+[2022-06-06 12:24:09] SBS96 de novo extraction completed for a total of 1 signatures! 
+Execution time:0:01:04
 
-[2022-06-05 18:28:51] Analysis ended: 
+[2022-06-06 12:24:24] Analysis ended: 
 
 -------Job Status------- 
 Analysis of mutational signatures completed successfully! 
-Total execution time: 0:01:21 
+Total execution time: 0:01:19 
 Results can be found in:  results/results_SigProExtractor/5000_mut  folder

@@ -1,2 +1,2 @@
 Samples	SBS1	SBS5	SBS96A
-Number	0	0	1000
+Number	0	0	2662

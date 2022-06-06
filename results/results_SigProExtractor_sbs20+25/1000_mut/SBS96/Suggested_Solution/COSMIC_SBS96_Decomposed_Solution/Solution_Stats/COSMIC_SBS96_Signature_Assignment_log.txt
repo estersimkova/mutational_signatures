@@ -5,14 +5,14 @@
 
                     ################ Sample 1 #################
 ############################# Initial Composition ####################################
-   SBS5  SBS96A
-0   4.0   996.0
-L2 Error %: 0.02
+   SBS96A
+0  2586.0
+L2 Error %: 0.01
 Cosine Similarity: 1.0
 ############################## Composition After Initial Remove ###############################
    SBS96A
-0  1000.0
-L2 Error %: 0.02
+0  2586.0
+L2 Error %: 0.01
 Cosine Similarity: 1.0
 
 ############################## Performing Add-Remove Step ##############################

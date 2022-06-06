@@ -1,2 +1,2 @@
 Samples	SBS96A
-Number	100
+Number	215
