@@ -1,0 +1,27 @@
+############################ Signature Decomposition Details ################################
+
+
+Context Type: 96
+Genome Build: GRCh37
+
+
+
+
+######################## Decomposing SBS96A ########################
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!! LAYER: 0 !!!!!!!!!!!!!!!!!!!!!!!!!
+Best Signature Composition ['SBS5', 'SBS40']
+L2 Error % 0.75
+Cosine Similarity 0.66
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!! LAYER: 1 !!!!!!!!!!!!!!!!!!!!!!!!!
+Best Signature Composition ['SBS5', 'SBS40']
+L2 Error % 0.75
+Cosine Similarity 0.66
+
+#################### Final Composition #################################
+['SBS5', 'SBS40']
+L2 Error % 0.75
+Cosine Similarity 0.66

@@ -17,7 +17,7 @@ PATH_TO_REF_SEQ = "../data/sars-ref-seq.txt"
 
 # 1. Normalise the COSMIC signatures to human trinucleotide content
 
-# code from normalize_cosmic_signatures.py
+# code from normalize_cosmic_signatures.py from https://github.com/kpotoh/signatures
 
 def load_triplet_counts(path: str):
     """ read and collapse raw trinucleotide counts """
@@ -79,6 +79,11 @@ signatures_normed_copy["Type"] = signatures_normed_copy["Type"].apply(shift_nucl
 
 signatures_normed = pd.concat([signatures_normed, signatures_normed_copy], ignore_index=True)
 
+# Create a random signature
+np.random.seed(70) #42 the first time
+signatures_normed['SBS_random'] = np.random.rand(192,1)
+print(signatures_normed['SBS_random'])
+
 # get the nucleotides of the Type column
 signatures_normed["Context"] = signatures_normed.Type.str.slice(start=0, stop=7, step=2) 
 
@@ -93,12 +98,25 @@ for i, strObj in enumerate(signatures_normed["Context"]):
     
 # Get a chosen signature, here SBS20 = symmetric and not that common, SBS25 = more uniform, SBS34 = very caracteristic and different from the others 
 
-#SBS = "SBS20"
+SBS = "SBS20"
 #SBS = "SBS25"
-SBS = "SBS34"
+#SBS = "SBS34"
+#SBS = "SBS_random" # negative control, random signature
+
+# For the potential second signature
+
+#SBS2 = "SBS34"
+#SBS2 = "SBS25"
+
+unique_sig = True # comment if want to use more than one signature to mutate
+#unique_sig = False # comment if want to use only one signature to mutate
 
 sbs = signatures_normed.loc[:,["Type", SBS, "Context"]]
 sbs = sbs.rename(columns={SBS: "SBS"})
+
+if unique_sig == False:
+    sbs2 = signatures_normed.loc[:,["Type", SBS2, "Context"]]
+    sbs2 = sbs2.rename(columns={SBS2: "SBS2"})
 
 # 2. Opening the SARS-cov2 ref seq 
 with open(PATH_TO_REF_SEQ) as f:
@@ -118,7 +136,7 @@ for c in lst:
 # 3. Mutate the SARS-cov2 reference sequence with respect to the chosen signature
 # Do the loop until we get n mutations
 
-n = 1000
+n = 5000 # select here the number of mutations you want
 i = 0
 
 # create the table in which to add the mutations
@@ -136,12 +154,15 @@ while i < n:
 
     # Check the probabilities in the sbs signature
     subdf = sbs.loc[sbs['Context'] == context]
+    
+    if unique_sig == False:
+        subdf2 = sbs2.loc[sbs2['Context'] == context]
 
     # Draw random number between 0 and 1
     rand_nb = np.random.random_sample()
 
     # Sum all three mutational probabilities, if higher than rand_nb: mutate, otherwise: not
-    sum_probas = subdf['SBS'].values.sum()
+    sum_probas = subdf['SBS'].values.sum() 
     mutate = False
 
     if sum_probas > rand_nb:
@@ -152,10 +173,27 @@ while i < n:
     # Get the normalised probas, that sum up to 1
     subdf_normed = subdf.copy()
     subdf_normed['SBS']= subdf['SBS'].values/sum_probas
+    
+    if unique_sig == False:
+        subdf_normed2 = subdf2.copy()
+        subdf_normed2['SBS2']= subdf2['SBS2'].values/sum_probas
 
     if mutate == True: # so if proba bigger than random number
-        # Choose randomly which type of mutation it will be
-        chosen_mut = subdf_normed.sample(n=1, weights='SBS')
+        # Choose randomly which type of mutation it will be  
+        
+        if unique_sig == True: 
+            chosen_mut = subdf_normed.sample(n=1, weights='SBS')  
+        
+        # If we have two signatures to mutate with, let's say, 50% each probability
+        
+        elif unique_sig == False:
+        
+            if rand_nb > 0.5: 
+                chosen_mut = subdf_normed.sample(n=1, weights='SBS')
+            else: 
+                chosen_mut = subdf_normed2.sample(n=1, weights='SBS2')
+        
+        
         # Extract the nucleotide to mutate into
         mut_nt = chosen_mut.Type.str.slice(start=4, stop=5, step=1)
         i = i+1
@@ -163,7 +201,6 @@ while i < n:
         
         # Write the mutation type
         mutation = seq[nt[0]-1] + "[" + seq[nt[0]] + ">" + mut_nt.values[0] + "]" + seq[nt[0]+1]
-        #print(mutation)
         
         # Add one to count if this mutation occured
         mutation_table["Number"].loc[mutation_table['Type'] == mutation] += 1
@@ -175,6 +212,7 @@ while i < n:
 # Print the mutation table obtained and save it to tsv format to be opened in the jupyter notebook        
 print("The mutation spectrum obtained is the following:", mutation_table)
 filepath = Path('../results/results/{}_mut/mut_table_{}.tsv'.format(n,n))  
+# in the future, could add so it saves in a file named with the signature(s) used 
 filepath.parent.mkdir(parents=True, exist_ok=True)  
 mutation_table.to_csv(filepath, sep="\t") 
 
